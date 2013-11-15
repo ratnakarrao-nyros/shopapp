@@ -70,50 +70,53 @@ set :bundle_roles, :all
 
 
 
+#namespace :deploy do
+#  desc "Start the Thin processes"
+#  task :start do
+#    run  <<-CMD
+#      cd /var/www/shopapp/current; bundle exec thin start 
+#    CMD
+#  end
+
+#  desc "Stop the Thin processes"
+#  task :stop do
+#    run <<-CMD
+#      cd /var/www/shopapp/current; bundle exec thin stop 
+#    CMD
+#  end
+
+#  desc "Restart the Thin processes"
+#  task :restart do
+#    run <<-CMD
+#      cd /var/www/shopapp/current; bundle exec thin restart 
+#    CMD
+#  end
+
+#  desc "Create a symlink from the public/cvs folder to the shared/system/cvs folder"
+#  task :update_cv_assets, :except => {:no_release => true} do
+#    run <<-CMD
+#      ln -s /var/www/shared/cvs /var/www/shopapp/current/public
+#    CMD
+#  end
+#end
+
+
+
 namespace :deploy do
-  desc "Start the Thin processes"
-  task :start do
-    run  <<-CMD
-      cd /var/www/shopapp/current; bundle exec thin start 
-    CMD
-  end
-
-  desc "Stop the Thin processes"
-  task :stop do
-    run <<-CMD
-      cd /var/www/shopapp/current; bundle exec thin stop 
-    CMD
-  end
-
-  desc "Restart the Thin processes"
+  desc 'Restart application'
   task :restart do
-    run <<-CMD
-      cd /var/www/shopapp/current; bundle exec thin restart 
-    CMD
-  end
 
-  desc "Create a symlink from the public/cvs folder to the shared/system/cvs folder"
-  task :update_cv_assets, :except => {:no_release => true} do
-    run <<-CMD
-      ln -s /var/www/shared/cvs /var/www/shopapp/current/public
-    CMD
+  on roles(:app), in: :sequence, wait: 5 do
+    # Your restart mechanism here, for example:
+    # execute :touch, release_path.join('tmp/restart.txt')
+    run "cd #{current_path} && rails s -p 9090"
   end
+end  
 end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+#after "deploy:start", :restart_web_server 
 
 #namespace :deploy do
 
@@ -129,19 +132,14 @@ end
 
 
 
-
-
-
-
-##after "deploy:start", :restart_web_server 
-##  after :restart, :clear_cache do
-##    on roles(:web), in: :groups, limit: 3, wait: 10 do
-##      # Here we can do anything such as:
-##      # within release_path do
-##      #   execute :rake, 'cache:clear'
-##      # end
-##    end
-##  end
+#  after :restart, :clear_cache do
+#    on roles(:web), in: :groups, limit: 3, wait: 10 do
+#      # Here we can do anything such as:
+#      # within release_path do
+#      #   execute :rake, 'cache:clear'
+#      # end
+#    end
+#  end
 
 
 #  after :finishing, 'deploy:cleanup'

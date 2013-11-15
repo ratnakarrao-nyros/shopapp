@@ -27,7 +27,7 @@ gem 'shopify_app'
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 
-
+gem 'thin'
 gem "sshkit", "~> 1.0.0"
 gem 'capistrano',  '~> 3.0.0'
 gem "capistrano-rails", "~> 1.0.0"
