@@ -1,7 +1,6 @@
-require 'capistrano/rvm'
-
 set :stage, :staging
 
+set :deploy_to, '/var/www/shopapp'
 #set :deploy_to, 'shopappstag'
 #set :rvm_ruby_version, '1.9.3@cap'
 #set :rvm_type, :user
