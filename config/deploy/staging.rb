@@ -2,6 +2,8 @@ set :stage, :staging
 
 #set :deploy_to, 'shopappstag'
 
+set :rvm_ruby_version, '1.9.3@cap'
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
@@ -18,7 +20,8 @@ set :stage, :staging
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server '10.90.90.124', user: 'nyros', roles: %w{web app}
+server '10.90.90.120', user: 'nyros', roles: %w{web app}
+
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

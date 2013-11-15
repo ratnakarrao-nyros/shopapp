@@ -1,5 +1,5 @@
 #require 'capistrano/rails'
-
+#require "rvm/capistrano"
 
 set :application, 'shopapp'
 set :repo_url, 'git@github.com:ratnakarrao-nyros/shopapp.git'
