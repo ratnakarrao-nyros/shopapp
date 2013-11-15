@@ -104,17 +104,20 @@ set :bundle_roles, :all
 
 namespace :deploy do
   desc 'Restart application'
-  task :restart do
-
-  on roles(:app), in: :sequence, wait: 5 do
-    # Your restart mechanism here, for example:
-    # execute :touch, release_path.join('tmp/restart.txt')
-    run "cd #{current_path} && rails s -p 9090"
+   task :start do
+    run  <<-CMD
+      cd /var/www/shopapp/current; bundle exec thin start 
+    CMD
   end
-end  
 end
 
 
+
+#  task :start do
+#    run  <<-CMD
+#      cd /var/www/shopapp/current; bundle exec thin start 
+#    CMD
+#  end
 
 #after "deploy:start", :restart_web_server 
 
