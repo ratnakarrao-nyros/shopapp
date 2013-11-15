@@ -68,73 +68,20 @@ set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
 
 
+namespace :deploy do
 
+  desc 'Restart application'
+  task :restart do
+    on roles(:web), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      #run "#{current_path}/webctl restart #{dev_user} #{dev_port}" 
+      #run "cd #{current_path} && /etc/init.d/unicorn_#{fetch :application} restart"
+      # execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
 
-#namespace :deploy do
-#  desc "Start the Thin processes"
-#  task :start do
-#    run  <<-CMD
-#      cd /var/www/shopapp/current; bundle exec thin start 
-#    CMD
-#  end
-
-#  desc "Stop the Thin processes"
-#  task :stop do
-#    run <<-CMD
-#      cd /var/www/shopapp/current; bundle exec thin stop 
-#    CMD
-#  end
-
-#  desc "Restart the Thin processes"
-#  task :restart do
-#    run <<-CMD
-#      cd /var/www/shopapp/current; bundle exec thin restart 
-#    CMD
-#  end
-
-#  desc "Create a symlink from the public/cvs folder to the shared/system/cvs folder"
-#  task :update_cv_assets, :except => {:no_release => true} do
-#    run <<-CMD
-#      ln -s /var/www/shared/cvs /var/www/shopapp/current/public
-#    CMD
-#  end
-#end
-
-
-
-#namespace :deploy do
-#  desc 'Restart application'
-#   task :start do
-#    run  <<-CMD
-#      cd /var/www/shopapp/current; bundle exec thin start 
-#    CMD
-#  end
-#end
-
-
-
-#  task :start do
-#    run  <<-CMD
-#      cd /var/www/shopapp/current; bundle exec thin start 
-#    CMD
-#  end
 
 #after "deploy:start", :restart_web_server 
-
-#namespace :deploy do
-
-#  desc 'Restart application'
-##  task :restart do
-##    on roles(:web), in: :sequence, wait: 5 do
-##      # Your restart mechanism here, for example:
-##      run "#{current_path}/webctl restart #{dev_user} #{dev_port}" 
-##      #run "cd #{current_path} && /etc/init.d/unicorn_#{fetch :application} restart"
-##      # execute :touch, release_path.join('tmp/restart.txt')
-##    end
-##  end
-
-
-
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
 #      # Here we can do anything such as:
@@ -145,6 +92,6 @@ set :bundle_roles, :all
 #  end
 
 
-#  after :finishing, 'deploy:cleanup'
+  after :finishing, 'deploy:cleanup'
 
-#end
+end
