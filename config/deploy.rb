@@ -102,14 +102,14 @@ set :bundle_roles, :all
 
 
 
-namespace :deploy do
-  desc 'Restart application'
-   task :start do
-    run  <<-CMD
-      cd /var/www/shopapp/current; bundle exec thin start 
-    CMD
-  end
-end
+#namespace :deploy do
+#  desc 'Restart application'
+#   task :start do
+#    run  <<-CMD
+#      cd /var/www/shopapp/current; bundle exec thin start 
+#    CMD
+#  end
+#end
 
 
 
