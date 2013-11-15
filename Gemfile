@@ -27,8 +27,13 @@ gem 'shopify_app'
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 
-gem "capistrano", '~> 2.3'
+
+gem "sshkit", "~> 1.0.0"
+gem 'capistrano',  '~> 3.0.0'
+gem "capistrano-rails", "~> 1.0.0"
 gem "capistrano-ext"
+gem 'capistrano-rvm', github: 'capistrano/rvm'
+gem 'capistrano-bundler'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
