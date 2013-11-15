@@ -1,8 +1,10 @@
+require 'capistrano/rvm'
+
 set :stage, :staging
 
 #set :deploy_to, 'shopappstag'
-
-set :rvm_ruby_version, '1.9.3@cap'
+#set :rvm_ruby_version, '1.9.3@cap'
+#set :rvm_type, :user
 
 # Simple Role Syntax
 # ==================
@@ -12,6 +14,8 @@ set :rvm_ruby_version, '1.9.3@cap'
 #role :app, %w{nyros@10.90.90.120}
 #role :web, %w{nyros@10.90.90.120}
 #role :db,  %w{nyros@10.90.90.120}
+
+role :db,  %w{nyros@10.90.90.120}
 
 
 # Extended Server Syntax

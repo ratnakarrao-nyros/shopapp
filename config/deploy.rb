@@ -11,6 +11,10 @@ set :repo_url, 'git@github.com:ratnakarrao-nyros/shopapp.git'
 set :scm, :git
 set :format, :pretty
 
+
+set :rvm_ruby_version, '1.9.3@cap'
+set :rvm_type, :user
+
 # set :log_level, :debug
 #set :pty, true
 
@@ -60,14 +64,15 @@ set :use_sudo, true
 
 
 
-# for RoR 4
-set :default_env, { rvm_bin_path: '~/.rvm/bin' }
+#set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 set :bundle_gemfile, -> { release_path.join('Gemfile') }
 set :bundle_dir, -> { shared_path.join('bundle') }
 set :bundle_flags, ''
 #set :bundle_without, %w{test development}.join(' ')
 set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
+
+
 
 
 
